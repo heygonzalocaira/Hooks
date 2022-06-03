@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import FromWithCustomHook from './components/02-useEffect/FormWithCustomHook';
+//import FromWithCustomHook from './components/02-useEffect/FormWithCustomHook';
+import MultipleCustomHooks from './components/03-examples/MultipleCustomHooks';
 
 
 
@@ -8,7 +9,7 @@ import FromWithCustomHook from './components/02-useEffect/FormWithCustomHook';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <FromWithCustomHook />
+    <MultipleCustomHooks />
 );
 
 
