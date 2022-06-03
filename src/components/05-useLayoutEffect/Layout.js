@@ -1,18 +1,23 @@
 
-import React from 'react'
+import React, { useLayoutEffect, useRef } from 'react'
 import useCounter from '../../hooks/useCounter'
 import { useFetch } from '../../hooks/useFetch'
-import "../02-useEffect/effects.css"
+import "./layout.css"
 
 
-const MultipleCustomHooks = () => {
+const Layout = () => {
     const { counter, increment } = useCounter(1);
 
     const { loading, data } = useFetch(`https://www.breakingbadapi.com/api/quotes/${counter}`)
-    const { author, quote } = !!data && data[0];
+    const { quote } = !!data && data[0];
+
+    const pTag = useRef()
+    useLayoutEffect(() => {
+        console.log(pTag.current?.getBoundingClientRect())
+    },[quote])
     return (
         <div>
-            <h1>  Breaking Bad Quotes   </h1>
+            <h1>  Layout   </h1>
             <hr />
             {
                 loading
@@ -25,8 +30,13 @@ const MultipleCustomHooks = () => {
                     :
                     (
                         <blockquote className='blockquote text-right'>
-                            <p className='mb-0'>{quote}</p>
-                            <footer className='blockquote-footer'>{author}</footer>
+                            <p
+                                ref={pTag}
+                                className='mb-0'
+                            >
+                                {quote}
+                            </p>
+
                         </blockquote>
                     )
             }
@@ -40,4 +50,4 @@ const MultipleCustomHooks = () => {
     )
 }
 
-export default MultipleCustomHooks
+export default Layout
